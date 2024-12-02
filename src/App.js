@@ -8,7 +8,7 @@ import ShiftForm from './components/ShiftForm'; // Ensure ShiftForm.js has a def
 import ShiftList from './components/ShiftList';
 import Summary from './components/Summary';
 import { database, auth } from './firebase'; // Import Firebase
-import { ref, onValue, push, remove, off } from 'firebase/database'; // Import necessary functions
+import { ref, onValue, push, remove, off, set } from 'firebase/database'; // Import necessary functions
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'; // Import Firebase Authentication functions
 
 function App() {
@@ -72,8 +72,9 @@ function App() {
       if (user) {
         setUser(user);
         const shiftsRef = ref(database, `users/${user.uid}/shifts`);
+        const profileRef = ref(database, `users/${user.uid}/profile`);
 
-        const handleValueChange = (snapshot) => {
+        const handleShiftsValueChange = (snapshot) => {
           const data = snapshot.val();
           if (data) {
             const fetchedShifts = Object.keys(data).map(key => ({ id: key, ...data[key] }));
@@ -83,15 +84,35 @@ function App() {
           }
         };
 
-        onValue(shiftsRef, handleValueChange);
+        const handleProfileValueChange = (snapshot) => {
+          const data = snapshot.val();
+          if (data) {
+            setProfile(data);
+            setTempProfile(data);
+          }
+        };
+
+        onValue(shiftsRef, handleShiftsValueChange);
+        onValue(profileRef, handleProfileValueChange);
 
         return () => {
-          // Detach the listener using the exact callback reference
-          off(shiftsRef, 'value', handleValueChange);
+          // Detach the listeners using the exact callback references
+          off(shiftsRef, 'value', handleShiftsValueChange);
+          off(profileRef, 'value', handleProfileValueChange);
         };
       } else {
         setUser(null);
         setShifts([]);
+        setProfile({
+          hourlyRate: 65,
+          monthlyHours: 182,
+          fullTimePercentage: 100
+        });
+        setTempProfile({
+          hourlyRate: 65,
+          monthlyHours: 182,
+          fullTimePercentage: 100
+        });
       }
     });
 
@@ -215,6 +236,20 @@ function App() {
     setCustomShift({ date: '', hours: '' });
   };
 
+  const handleUpdateProfile = (e) => {
+    e.preventDefault();
+    if (!user) return;
+
+    set(ref(database, `users/${user.uid}/profile`), tempProfile)
+      .then(() => {
+        setProfile(tempProfile);
+        setShowSettings(false);
+      })
+      .catch((error) => {
+        console.error('Error updating profile:', error);
+      });
+  };
+
   // Calculate totals for the selected month
   const filteredShifts = shifts.filter(shift => shift.date.startsWith(selectedMonth));
   const totalHours = filteredShifts.reduce((acc, shift) => acc + shift.hoursWorked, 0);
@@ -252,13 +287,6 @@ function App() {
     if (!showSettings) {
       setTempProfile(profile);
     }
-  };
-
-  /* Handle Profile Settings Update */
-  const handleUpdateProfile = (e) => {
-    e.preventDefault();
-    setProfile(tempProfile);
-    setShowSettings(false);
   };
 
   return (
