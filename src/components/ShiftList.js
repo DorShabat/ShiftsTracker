@@ -1,6 +1,14 @@
 import React from 'react';
 import './ShiftList.css'; // Ensure ShiftList.css exists
 
+const getShiftType = (startTime) => {
+  const hour = parseInt(startTime.split(':')[0], 10);
+  if (hour >= 7 && hour < 15) return 'Morning';
+  if (hour >= 15 && hour < 23) return 'Evening';
+  if (hour >= 23 || hour < 7) return 'Night';
+  return 'Other';
+};
+
 const ShiftList = ({ filteredShifts, handleDeleteShift }) => (
   <div className="shift-list">
     <h2>Shifts</h2>
@@ -12,6 +20,7 @@ const ShiftList = ({ filteredShifts, handleDeleteShift }) => (
           <th>End</th>
           <th>Hours Worked</th>
           <th>Earnings</th>
+          <th>Shift Type</th> {/* New column for shift type */}
           <th>Actions</th>
         </tr>
       </thead>
@@ -23,6 +32,7 @@ const ShiftList = ({ filteredShifts, handleDeleteShift }) => (
             <td>{shift.endTime}</td>
             <td>{shift.hoursWorked.toFixed(2)}</td>
             <td>{shift.earnings.toFixed(2)}₪</td>
+            <td>{getShiftType(shift.startTime)}</td> {/* Display shift type */}
             <td>
               <button className="delete-button" onClick={() => handleDeleteShift(shift.id)}>X</button>
             </td>
