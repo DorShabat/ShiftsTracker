@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/ShiftTracker/static/css/main.3797989e.css",
-    "main.js": "/ShiftTracker/static/js/main.5dd92a42.js",
-    "static/js/453.ee10b947.chunk.js": "/ShiftTracker/static/js/453.ee10b947.chunk.js",
-    "index.html": "/ShiftTracker/index.html",
-    "main.3797989e.css.map": "/ShiftTracker/static/css/main.3797989e.css.map",
-    "main.5dd92a42.js.map": "/ShiftTracker/static/js/main.5dd92a42.js.map",
-    "453.ee10b947.chunk.js.map": "/ShiftTracker/static/js/453.ee10b947.chunk.js.map"
+    "main.css": "/ShiftsTracker/static/css/main.3797989e.css",
+    "main.js": "/ShiftsTracker/static/js/main.4a0581a0.js",
+    "static/js/453.ee10b947.chunk.js": "/ShiftsTracker/static/js/453.ee10b947.chunk.js",
+    "index.html": "/ShiftsTracker/index.html",
+    "main.3797989e.css.map": "/ShiftsTracker/static/css/main.3797989e.css.map",
+    "main.4a0581a0.js.map": "/ShiftsTracker/static/js/main.4a0581a0.js.map",
+    "453.ee10b947.chunk.js.map": "/ShiftsTracker/static/js/453.ee10b947.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.3797989e.css",
-    "static/js/main.5dd92a42.js"
+    "static/js/main.4a0581a0.js"
   ]
 }
