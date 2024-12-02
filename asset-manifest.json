@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/DorShabat/ShiftsTracker/static/css/main.3797989e.css",
+    "main.js": "/DorShabat/ShiftsTracker/static/js/main.8e896c13.js",
+    "static/js/453.ee10b947.chunk.js": "/DorShabat/ShiftsTracker/static/js/453.ee10b947.chunk.js",
+    "index.html": "/DorShabat/ShiftsTracker/index.html",
+    "main.3797989e.css.map": "/DorShabat/ShiftsTracker/static/css/main.3797989e.css.map",
+    "main.8e896c13.js.map": "/DorShabat/ShiftsTracker/static/js/main.8e896c13.js.map",
+    "453.ee10b947.chunk.js.map": "/DorShabat/ShiftsTracker/static/js/453.ee10b947.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.3797989e.css",
+    "static/js/main.8e896c13.js"
+  ]
+}
