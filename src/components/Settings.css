@@ -1,0 +1,59 @@
+.settings-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: #fff;
+  padding: 30px;
+  border: 2px solid #007BFF;
+  border-radius: 8px;
+  z-index: 1000;
+  width: 400px;
+}
+
+.settings-modal h2 {
+  margin-bottom: 20px;
+}
+
+.settings-modal form {
+  display: flex;
+  flex-direction: column;
+}
+
+.settings-modal label {
+  margin-bottom: 15px;
+}
+
+.settings-modal input[type="number"] {
+  width: 100%;
+  padding: 8px;
+  margin-top: 5px;
+  box-sizing: border-box;
+}
+
+.settings-modal button[type="submit"] {
+  padding: 10px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.settings-modal button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+.close-settings {
+  margin-top: 20px;
+  padding: 10px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.close-settings:hover {
+  background-color: #c82333;
+}

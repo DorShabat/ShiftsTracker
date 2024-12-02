@@ -1,0 +1,40 @@
+.shift-list {
+  margin: 20px;
+}
+
+.shifts-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.shifts-table th, .shifts-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+}
+
+.shifts-table th {
+  background-color: #f2f2f2;
+  font-weight: bold;
+}
+
+.shifts-table tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+.shifts-table tr:hover {
+  background-color: #eaeaea;
+}
+
+.delete-button {
+  background-color: #ff4d4d;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.delete-button:hover {
+  background-color: #ff1a1a;
+}

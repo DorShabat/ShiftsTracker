@@ -1,38 +1,125 @@
 .App {
-  text-align: center;
+  font-family: Arial, sans-serif;
+  margin: 20px;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+h1, h2, h3 {
+  color: #333;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+/* Use Flexbox to stack form elements vertically */
+form {
   display: flex;
   flex-direction: column;
+  width: 100%;
+}
+
+/* Stack labels and inputs vertically and align them */
+label {
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  margin-top: 10px;
+  width: 100%;
+}
+
+/* Ensure checkboxes align properly next to their text */
+label input[type="checkbox"] {
+  margin-right: 10px;
+}
+
+/* Restrict input widths */
+input[type="date"],
+input[type="number"],
+input[type="time"] {
+  width: 30%; /* Adjust as needed */
+  box-sizing: border-box;
+  margin-top: 5px;
+  padding: 5px;
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px;
+  margin-left: 2px;
+  background-color: #007BFF;
   color: white;
+  border: none;
+  cursor: pointer;
 }
 
-.App-link {
-  color: #61dafb;
+button:hover {
+  background-color: #0056b3;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Remove styles related to ul and li since they are no longer used */
+/* ...existing commented code... */
+
+li button,
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  cursor: pointer;
+  padding: 5px 10px;
 }
+
+li button:hover,
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+/* Remove duplicate button styles */
+/* ...existing commented code... */
+
+/* Style for the summary section */
+/* ...moved to Summary.css... */
+
+/* Style for the custom shift form */
+/* ...moved to ShiftForm.css... */
+
+/* Tabs styles */
+/* ...moved to Tabs.css... */
+
+/* Header styles */
+/* ...moved to Header.css... */
+
+/* Login Page Styles */
+/* ...moved to Login.css... */
+
+/* Settings Modal Styles */
+/* ...moved to Settings.css... */
+
+/* Preserve any remaining global styles */
+
+/* Remove styles that have been moved to component-specific CSS */
+/* 
+.shift-form {
+  // Previously defined styles
+}
+
+.shift-list {
+  // Previously defined styles
+}
+
+.summary {
+  // Previously defined styles
+}
+
+.tabs {
+  // Previously defined styles
+}
+
+.header {
+  // Previously defined styles
+}
+
+.login-container {
+  // Previously defined styles
+}
+
+.settings-modal {
+  // Previously defined styles
+}
+*/
+
+/* Preserve any remaining global styles */
