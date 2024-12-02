@@ -32,7 +32,7 @@ function App() {
   const [profile, setProfile] = useState({
     hourlyRate: 65,
     monthlyHours: 182,
-    fullTimePercentage: 75
+    fullTimePercentage: 100
   });
 
   /* Temporary Profile Settings State for Modal */
