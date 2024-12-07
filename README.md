@@ -1,4 +1,23 @@
+# how to work with git
+## undo changes 
+```bash
+git reset --hard HEAD
+```
+## commit and push
+```bash
+git add .
+git commit -m "message"
+git push orgin master 
+```
 
+## deploy to github pages
+```bash
+npm run deploy
+```
+if working on a new computer you need to install gh-pages
+```bash
+npm install --save-dev gh-pages
+```
 
 # `npm start`
 
