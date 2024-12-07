@@ -1,3 +1,5 @@
+
+
 # `npm start`
 
 Runs the app in the development mode.\
@@ -7,5 +9,7 @@ The page will reload when you make changes.\
 You may also see any lint errors in the console.
 
 # `npm run deploy`
+**in order to do deploy we need to**
+**npm install --save-dev gh-pages**s
 
 Deploys the app to GitHub Pages
