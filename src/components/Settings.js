@@ -5,7 +5,6 @@ const Settings = ({ tempProfile, handleTempProfileChange, handleUpdateProfile, t
   <div className="settings-modal">
     <h2>Settings</h2>
     <form onSubmit={handleUpdateProfile}>
-      {/* ...existing code... */}
       <label>
         Hourly Rate:
         <input

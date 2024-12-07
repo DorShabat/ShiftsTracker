@@ -10,6 +10,8 @@ import Summary from './components/Summary';
 import { database, auth } from './firebase'; // Import Firebase
 import { ref, onValue, push, remove, off, set } from 'firebase/database'; // Import necessary functions
 import { signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth'; // Import Firebase Authentication functions
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCog } from '@fortawesome/free-solid-svg-icons';
 
 function App() {
   const [shifts, setShifts] = useState([]);
@@ -321,8 +323,7 @@ function App() {
         <Login handleLogin={handleLogin} email={email} setEmail={setEmail} password={password} setPassword={setPassword} />
       ) : (
         <>
-          <Header toggleSettings={toggleSettings} />
-
+          <Header user={user} toggleSettings={toggleSettings} /> {/* Pass user and toggleSettings */}
           {showSettings && (
             <Settings
               tempProfile={tempProfile}

@@ -123,3 +123,49 @@ li button:hover,
 */
 
 /* Preserve any remaining global styles */
+
+.greeting-settings {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 20px;
+  background-color: #f1f1f1;
+  border-bottom: 1px solid #ccc;
+}
+
+.greeting {
+  font-size: 18px;
+  margin-right: 20px;
+  color: #333;
+}
+
+/* ...existing code... */
+.settings-button {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 5px;
+  background-color: #0056b3;
+  color: white;
+  font-size: 14px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.settings-button:hover {
+  background-color: #003f7f;
+}
+
+.settings-button .fa-cog {
+  margin-left: 5px;
+}
+/* ...existing code... */
+
+.header-right {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+}
