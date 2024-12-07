@@ -25,7 +25,8 @@ function App() {
   const [selectedMonth, setSelectedMonth] = useState(new Date().toISOString().slice(0,7)); // Format: YYYY-MM
   const [customShift, setCustomShift] = useState({
     date: '',
-    hours: ''
+    startTime: '',
+    endTime: ''
   });
 
   /* Profile Settings State */
@@ -212,6 +213,25 @@ function App() {
       });
   };
 
+  const handleUpdateShift = (id, startTime, endTime) => {
+    if (!user) return;
+  
+    const shiftRef = ref(database, `users/${user.uid}/shifts/${id}`);
+    const shift = shifts.find(shift => shift.id === id);
+    if (!shift) return;
+  
+    const hoursWorked = (new Date(`${shift.date}T${endTime}`) - new Date(`${shift.date}T${startTime}`)) / (1000 * 60 * 60);
+    const earnings = calculateEarnings(shift.date, startTime, endTime);
+  
+    set(shiftRef, { ...shift, startTime, endTime, hoursWorked, earnings })
+      .then(() => {
+        console.log(`Shift with id ${id} updated successfully.`);
+      })
+      .catch((error) => {
+        console.error(`Error updating shift with id ${id}:`, error);
+      });
+  };
+
   const handleCustomShiftChange = (e) => {
     const { id, value } = e.target;
     setCustomShift({
@@ -224,16 +244,15 @@ function App() {
     e.preventDefault();
     if (!user) return;
 
-    const { date, hours } = customShift;
-    if (!date || !hours) return;
+    const { date, startTime, endTime } = customShift;
+    if (!date || !startTime || !endTime) return;
 
-    const hoursWorked = parseFloat(hours);
-    const dayOfWeek = new Date(date).getDay();
-    const earnings = dayOfWeek === 5 || dayOfWeek === 6 ? hoursWorked * profile.hourlyRate * 1.5 : hoursWorked * profile.hourlyRate;
+    const hoursWorked = (new Date(`${date}T${endTime}`) - new Date(`${date}T${startTime}`)) / (1000 * 60 * 60);
+    const earnings = calculateEarnings(date, startTime, endTime);
 
-    const newShift = { date, startTime: '--:--', endTime: '--:--', hoursWorked, earnings };
+    const newShift = { date, startTime, endTime, hoursWorked, earnings };
     push(ref(database, `users/${user.uid}/shifts`), newShift); // Add custom shift to Firebase under the user's data
-    setCustomShift({ date: '', hours: '' });
+    setCustomShift({ date: '', startTime: '', endTime: '' });
   };
 
   const handleUpdateProfile = (e) => {
@@ -250,8 +269,15 @@ function App() {
       });
   };
 
+  const sortShiftsByDate = (shifts) => {
+    return shifts.sort((a, b) => new Date(a.date) - new Date(b.date)).map(shift => ({
+      ...shift,
+      date: new Date(shift.date).toLocaleDateString('en-GB') // Format date as dd-mm-yyyy
+    }));
+  };
+
   // Calculate totals for the selected month
-  const filteredShifts = shifts.filter(shift => shift.date.startsWith(selectedMonth));
+  const filteredShifts = sortShiftsByDate(shifts.filter(shift => shift.date.startsWith(selectedMonth)));
   const totalHours = filteredShifts.reduce((acc, shift) => acc + shift.hoursWorked, 0);
   const totalEarnings = filteredShifts.reduce((acc, shift) => acc + shift.earnings, 0);
   const targetHours = profile.monthlyHours * (profile.fullTimePercentage / 100);
@@ -330,7 +356,10 @@ function App() {
           </div>
 
           {/* Shifts Table */}
-          <ShiftList filteredShifts={filteredShifts} handleDeleteShift={handleDeleteShift} />
+          <ShiftList filteredShifts={filteredShifts.map(shift => ({
+            ...shift,
+            shiftType: getShiftType(shift.startTime, shift.endTime)
+          }))} handleDeleteShift={handleDeleteShift} handleUpdateShift={handleUpdateShift} />
 
           {/* Summary Section */}
           <Summary
@@ -345,5 +374,13 @@ function App() {
     </div>
   );
 }
+
+// Helper function to determine shift type
+const getShiftType = (startTime, endTime) => {
+  if (startTime === '07:00' && endTime === '15:00') return 'morning';
+  if (startTime === '15:00' && endTime === '23:00') return 'evening';
+  if (startTime === '23:00' && endTime === '07:00') return 'night';
+  return 'custom';
+};
 
 export default App;

@@ -73,13 +73,22 @@ const ShiftForm = ({
             />
           </label>
           <label>
-            Hours Worked:
+            Start Time:
             <input
-              type="number"
-              id="hours"
-              value={customShift.hours}
+              type="time"
+              id="startTime"
+              value={customShift.startTime}
               onChange={handleCustomShiftChange}
-              step="0.1"
+              required
+            />
+          </label>
+          <label>
+            End Time:
+            <input
+              type="time"
+              id="endTime"
+              value={customShift.endTime}
+              onChange={handleCustomShiftChange}
               required
             />
           </label>
