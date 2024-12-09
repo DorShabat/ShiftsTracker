@@ -32,3 +32,26 @@ You may also see any lint errors in the console.
 **npm install --save-dev gh-pages**s
 
 Deploys the app to GitHub Pages
+
+
+
+
+# deploy into firebase
+```bash
+npm install -g firebase-tools
+firebase login
+firebase init
+```
+
+# `firebase deploy`
+Deploy the app to firebase
+```bash
+npm build
+firebase deploy
+```
+
+To enable script execution policy for running Firebase commands, run the following command in PowerShell:
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+

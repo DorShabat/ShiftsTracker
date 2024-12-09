@@ -2,7 +2,7 @@
   "name": "shift-tracker",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://DorShabat.github.io/ShiftsTracker",
+  "homepage": ".",
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.1",
     "@fortawesome/free-solid-svg-icons": "^6.7.1",
